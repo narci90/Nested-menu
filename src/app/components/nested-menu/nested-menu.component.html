@@ -1,0 +1,7 @@
+<ng-container *ngIf="!!menu.items.length">
+  <div *ngIf="!!mainMenu.menu" [matMenuTriggerFor]="mainMenu.menu">
+    <ng-content></ng-content>
+  </div>
+
+  <nested-menu-item #mainMenu [items]="menu.items" (touchedItem)="action.emit($event)"></nested-menu-item>
+</ng-container>

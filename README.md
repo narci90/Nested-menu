@@ -1,27 +1,106 @@
-# NestedMenu
+# Nested menu
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
+Dynamic nested menu for undefined levels, extended from Angular Material menu component.
 
-## Development server
+## Get started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Clone the repo
 
-## Code scaffolding
+```shell
+git clone https://github.com/narci90/nested-menu.git
+cd nested-menu
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Install npm packages
 
-## Build
+Install the `npm` packages described in the `package.json` and verify that it works:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+npm install
+```
 
-## Running unit tests
+### Local server start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Start the dev server by running the command below. Navigate to `http://localhost:4200/`.
 
-## Running end-to-end tests
+```shell
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#### npm scripts
 
-## Further help
+These are the most useful commands defined in `package.json`:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- `npm start` - runs the TypeScript compiler, asset copier, and a server at the same time, all three in "watch mode".
+- `npm run build` - runs the TypeScript compiler and asset copier once.
+- `npm run build:watch` - runs the TypeScript compiler and asset copier in "watch mode"; when changes occur to source files, they will be recompiled or copied into `dist/`.
+- `npm test` - builds the application and runs Intern tests (both unit and functional) one time.
+- `npm run lint` - runs `eslint` on the project files.
+- `npm run lint:fix` - runs `eslint fix` on the project files.
+- `npm run prettier` - runs `prettier write` on the project files.
+
+## Usage example
+
+### Import module
+
+Import the `NestedMenuModule` module into the module where you want to make use of it.
+
+app.module.ts
+
+```ts
+...
+import { NestedMenuModule } from './components';
+
+
+@NgModule({
+  ...
+  imports: [NestedMenuModule],
+})
+export class AppModule {}
+```
+
+### Use the nested-menu in your component
+
+app.component.html
+
+```html
+<nested-menu [items]="itemsMenu">
+  <button>Menu</button>
+</nested-menu>
+```
+
+app.component.ts
+
+```ts
+  import { NestedMenuItem } from './components/nested-menu';
+  ...
+
+  class AppComponent {
+
+    itemsMenu: NestedMenuItem[] = [
+      {
+        name: 'Drink',
+        id: 1,
+        parentId: null
+      },
+      {
+        name: 'Food',
+        id: 2,
+        parentId: null
+      },
+      {
+        name: 'Without alcohol',
+        id: 10,
+        parentId: 1,
+        disabled: true
+      },
+      {
+        name: 'With alcohol',
+        id: 11,
+        parentId: 1,
+        route: '/detail',
+        params: ['With alcohol']
+      }
+    ];
+    ...
+```

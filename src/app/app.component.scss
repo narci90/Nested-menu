@@ -1,0 +1,45 @@
+:host {
+  $primaryColor: #d6dbdf;
+  $secondaryColor: #aeb6bf;
+
+  > .header {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 0.0625rem $secondaryColor solid;
+    background-color: $primaryColor;
+
+    > nested-menu {
+      $size: 1.875rem;
+      $space: 0.1875rem;
+      width: $size;
+      height: $size;
+      padding-top: $space;
+      padding-left: $space;
+      border-radius: 50%;
+      box-sizing: border-box;
+      transition: background-color 0.3s linear;
+
+      &:hover {
+        background-color: $secondaryColor;
+      }
+
+      mat-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  > .add-item-button {
+    margin: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    border: 0.0625rem $secondaryColor solid;
+    background-color: $primaryColor;
+
+    &:hover {
+      background-color: $secondaryColor;
+    }
+  }
+}
